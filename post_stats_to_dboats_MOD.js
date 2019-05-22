@@ -51,9 +51,9 @@ module.exports = {
 		const WrexMODS = this.getWrexMods(); 
 		const DBOATS = WrexMODS.require('boats.js'); 
 		const DBOATS = require('boats.js');
-        const dboats = new DBOATS(token);
+                const dboats = new DBOATS(token);
         
-        dboats.postStats(this.getDBM().Bot.bot.guilds.size, this.getDBM().Bot.bot.user.id).catch(e => console.log(e))
+                dboats.postStats(this.getDBM().Bot.bot.guilds.size, this.getDBM().Bot.bot.user.id).catch(e => console.log(e))
 	},
 
 
