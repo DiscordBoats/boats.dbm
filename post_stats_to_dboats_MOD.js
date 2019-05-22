@@ -1,23 +1,23 @@
 module.exports = {
 
-	name: "Sends Stats to Discord Boats",
+    name: "Sends Stats to Discord Boats",
 
     section: "Other Stuff",
-    
-	subtitle: function (data) {
-		return `Send server count to Discord.Boats!`;
+
+    subtitle: function(data) {
+        return `Posted server count to Discord.Boats!`;
     },
-    
-	author: "MrSheldon",
 
-	version: "1.0.0", 
+    author: "MrSheldon",
 
-	short_description: "Send bot stats to Discord Bot List!",
+    version: "1.0.0",
 
-	fields: ["dboatsToken"],
+    short_description: "Send bot stats to Discord Bot List!",
 
-	html: function (isEvent, data) {
-		return `
+    fields: ["dboatsToken"],
+
+    html: function(isEvent, data) {
+        return `
 <div id="modinfo">
 	<p>
 	   <u>Mod Info:</u><br>
@@ -34,23 +34,46 @@ module.exports = {
 	</p>
 	</div>
 </div>`
-	},
+    },
 
-	init: function () {
-	},
+    init: function() {},
 
-	action: function (cache) {
+    action: function(cache) {
 
-		const data = cache.actions[cache.index];
-		const token = this.evalMessage(data.dboatsToken, cache);
+        const data = cache.actions[cache.index];
+        const token = this.evalMessage(data.dboatsToken, cache);
 
-		const DBOATS = require('boats.js'); 
-                const dboats = new DBOATS(token);
-        
-                dboats.postStats(this.getDBM().Bot.bot.guilds.size, this.getDBM().Bot.bot.user.id).catch(e => console.log(e))
-	},
+        const https = require('https')
+
+        const data = JSON.stringify({
+            server_count: this.getDBM().Bot.bot.guilds.size
+        })
+
+        const options = {
+            hostname: 'discord.boats',
+            port: 443,
+            path: '/api/bot/' + this.getDBM().Bot.bot.user.id,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            }
+        }
+
+        const req = https.request(options, (res) => {
+            res.on('data', (d) => {
+                process.stdout.write(d)
+            })
+        })
+
+        req.on('error', (error) => {
+            console.error(error)
+        })
+
+        req.write(data)
+        req.end()
+    },
 
 
-	mod: function (DBM) {
-	}
+    mod: function(DBM) {}
 };
