@@ -1,6 +1,5 @@
 # boats.dbm
-The official discord.boats mod for Discord Bot Maker
-
+The official Discord Bot Maker mod for the Discord.Boats API
 
 
 ## Installation
