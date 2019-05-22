@@ -16,10 +16,6 @@ module.exports = {
 
 	fields: ["dboatsToken"],
 
-	depends_on_mods: [
-		{name:'WrexMODS',path:'aaa_wrexmods_dependencies_MOD.js'}
-	],
-
 	html: function (isEvent, data) {
 		return `
 <div id="modinfo">
@@ -48,9 +44,7 @@ module.exports = {
 		const data = cache.actions[cache.index];
 		const token = this.evalMessage(data.dboatsToken, cache);
 
-		const WrexMODS = this.getWrexMods(); 
-		const DBOATS = WrexMODS.require('boats.js'); 
-		const DBOATS = require('boats.js');
+		const DBOATS = require('boats.js'); 
                 const dboats = new DBOATS(token);
         
                 dboats.postStats(this.getDBM().Bot.bot.guilds.size, this.getDBM().Bot.bot.user.id).catch(e => console.log(e))
