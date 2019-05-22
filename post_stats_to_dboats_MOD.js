@@ -43,13 +43,13 @@ module.exports = {
         const data = cache.actions[cache.index];
         const token = this.evalMessage(data.dboatsToken, cache);
 
-        const https = require('https')
+        var http = require('http')
 
-        const data = JSON.stringify({
+        var body = JSON.stringify({
             server_count: this.getDBM().Bot.bot.guilds.size
         })
 
-        const options = {
+        var request = new http.ClientRequest({
             hostname: 'discord.boats',
             port: 443,
             path: '/api/bot/' + this.getDBM().Bot.bot.user.id,
@@ -58,20 +58,9 @@ module.exports = {
                 'Content-Type': 'application/json',
                 'Authorization': token
             }
-        }
-
-        const req = https.request(options, (res) => {
-            res.on('data', (d) => {
-                process.stdout.write(d)
-            })
         })
 
-        req.on('error', (error) => {
-            console.error(error)
-        })
-
-        req.write(data)
-        req.end()
+        request.end(body)
     },
 
 
