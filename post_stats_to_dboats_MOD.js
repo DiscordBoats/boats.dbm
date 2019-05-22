@@ -46,7 +46,7 @@ module.exports = {
         const DBOATS = require('boats.js');
         const dboats = new DBOATS(token);
 
-        dboats.postStats(this.getDBM().Bot.bot.guilds.size + Number(350), this.getDBM().Bot.bot.user.id).catch(e => console.log(e))
+        dboats.postStats(this.getDBM().Bot.bot.guilds.size, this.getDBM().Bot.bot.user.id).catch(e => console.log(e))
 
         this.callNextAction(cache);
     },
