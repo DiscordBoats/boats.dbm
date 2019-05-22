@@ -45,22 +45,35 @@ module.exports = {
 
         var http = require('http')
 
-        var body = JSON.stringify({
-            server_count: this.getDBM().Bot.bot.guilds.size
-        })
+        var post_req = null,
+            post_data = '{"server_count":"' + this.getDBM().Bot.bot.guilds.size + '"}';
 
-        var request = new http.ClientRequest({
+        var post_options = {
             hostname: 'discord.boats',
-            port: 443,
-            path: '/api/bot/' + this.getDBM().Bot.bot.user.id,
+            port: '443',
+            path: '/api/bot' + this.getDBM().Bot.bot.user.id,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token
             }
-        })
+        };
 
-        request.end(body)
+        post_req = http.request(post_options, function(res) {
+            console.log('STATUS: ' + res.statusCode);
+            console.log('HEADERS: ' + JSON.stringify(res.headers));
+            res.setEncoding('utf8');
+            res.on('data', function(chunk) {
+                console.log('Response: ', chunk);
+            });
+        });
+
+        post_req.on('error', function(e) {
+            console.log('problem with request: ' + e.message);
+        });
+
+        post_req.write(post_data);
+        post_req.end();
     },
 
 
