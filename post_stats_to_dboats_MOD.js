@@ -1,18 +1,18 @@
 module.exports = {
 
-    name: "Sends Stats to Discord Boats",
+    name: "Post Stats to Discord.Boats",
 
     section: "Other Stuff",
 
     subtitle: function(data) {
-        return `Posted server count to Discord.Boats!`;
+        return `Posted stats to Discord.Boats!`;
     },
 
     author: "MrSheldon",
 
     version: "1.0.0",
 
-    short_description: "Send bot stats to Discord.Boa!",
+    short_description: "The official Discord Bot Maker mod for the Discord.Boats API",
 
     fields: ["dboatsToken"],
 
