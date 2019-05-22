@@ -10,8 +10,8 @@ The official discord.boats mod for Discord Bot Maker
 2. 
 > Option 1 (Recommended)
 
-Use the command `npm i boats.js --save` in powershell/cmd/terminal and refresh Discord Bot Maker
+Use the command `npm i boats.js --save` in powershell/cmd/terminal and refresh Discord Bot Maker - [Video](https://mrsheldon.me/files/35151532.gif)
 
 > Option 2 
 
-Use the module manager to install the `boats.js` package
+Use the module manager to install the `boats.js` package - [Video](https://mrsheldon.me/files/86325372.gif)
