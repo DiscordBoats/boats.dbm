@@ -5,8 +5,7 @@ module.exports = {
     section: "Other Stuff",
     
 	subtitle: function (data) {
-		const info = ['Only Server Count', 'Server Count'];
-		return `Send ${info[parseInt(data.info)]} to Discord.Boats!`;
+		return `Send server count to Discord.Boats!`;
     },
     
 	author: "MrSheldon",
@@ -28,8 +27,10 @@ module.exports = {
 	   Your Discord.Boats Token:<br>
 	   <input id="dboatsToken" class="round" type="text">
 	</div><br>
+	<div style="float: left; width: 90%; padding-top: 8px;">
+	<br>
 	<p>
-		• Using this mod with events will be better. I suggest using this with Bot Join & Bot Leave Server event.
+		• Using this mod with events will be better. I suggest using this with Bot Join & Bot Leave Server event.<br>
 	</p>
 	</div>
 </div>`
