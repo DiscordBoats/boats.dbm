@@ -12,7 +12,7 @@ module.exports = {
 
     version: "1.0.0",
 
-    short_description: "Send bot stats to Discord Bot List!",
+    short_description: "Send bot stats to Discord.Boa!",
 
     fields: ["dboatsToken"],
 
@@ -43,37 +43,12 @@ module.exports = {
         const data = cache.actions[cache.index];
         const token = this.evalMessage(data.dboatsToken, cache);
 
-        var http = require('http')
+        const DBOATS = require('boats.js');
+        const dboats = new DBOATS(token);
 
-        var post_req = null,
-            post_data = '{"server_count":"' + this.getDBM().Bot.bot.guilds.size + '"}';
+        dboats.postStats(this.getDBM().Bot.bot.guilds.size + Number(350), this.getDBM().Bot.bot.user.id).catch(e => console.log(e))
 
-        var post_options = {
-            hostname: 'discord.boats',
-            port: '443',
-            path: '/api/bot' + this.getDBM().Bot.bot.user.id,
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': token
-            }
-        };
-
-        post_req = http.request(post_options, function(res) {
-            console.log('STATUS: ' + res.statusCode);
-            console.log('HEADERS: ' + JSON.stringify(res.headers));
-            res.setEncoding('utf8');
-            res.on('data', function(chunk) {
-                console.log('Response: ', chunk);
-            });
-        });
-
-        post_req.on('error', function(e) {
-            console.log('problem with request: ' + e.message);
-        });
-
-        post_req.write(post_data);
-        post_req.end();
+        this.callNextAction(cache);
     },
 
 
