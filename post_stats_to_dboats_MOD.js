@@ -14,7 +14,11 @@ module.exports = {
 
 	short_description: "Send bot stats to Discord Bot List!",
 
-	fields: ["dboatsToken", "info"],
+	fields: ["dboatsToken"],
+
+	depends_on_mods: [
+		{name:'WrexMODS',path:'aaa_wrexmods_dependencies_MOD.js'}
+	],
 
 	html: function (isEvent, data) {
 		return `
@@ -46,9 +50,10 @@ module.exports = {
 
 		const WrexMODS = this.getWrexMods(); 
 		const DBOATS = WrexMODS.require('boats.js'); 
-                const dboats = new DBOATS(token);
+		const DBOATS = require('boats.js');
+        const dboats = new DBOATS(token);
         
-                dboats.postStats(this.getDBM().Bot.bot.guilds.size, this.getDBM().Bot.bot.user.id).catch(e => console.log(e))
+        dboats.postStats(this.getDBM().Bot.bot.guilds.size, this.getDBM().Bot.bot.user.id).catch(e => console.log(e))
 	},
 
 
