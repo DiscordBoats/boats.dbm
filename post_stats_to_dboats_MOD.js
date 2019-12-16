@@ -10,9 +10,9 @@ module.exports = {
 
     author: "MrSheldon",
 
-    version: "1.0.0",
+    version: "1.0.1",
 
-    short_description: "The official Discord Bot Maker mod for the Discord.Boats API",
+    short_description: "The official Discord Bot Maker mod for posting bot stats to Discord.Boats",
 
     fields: ["dboatsToken"],
 
@@ -30,7 +30,7 @@ module.exports = {
 	<div style="float: left; width: 90%; padding-top: 8px;">
 	<br>
 	<p>
-		• Using this mod with events will be better. I suggest using this with Bot Join & Bot Leave Server event.<br>
+		• Using this mod with events will be better. I suggest using this with the Bot Join & Bot Leave Server events.<br>
 	</p>
 	</div>
 </div>`
@@ -43,10 +43,11 @@ module.exports = {
         const data = cache.actions[cache.index];
         const token = this.evalMessage(data.dboatsToken, cache);
 
-        const DBOATS = require('boats.js');
+        const WrexMODS = this.getWrexMods();
+	const DBOATS = WrexMODS.require('boats.js');
         const dboats = new DBOATS(token);
 
-        dboats.postStats(this.getDBM().Bot.bot.guilds.size, this.getDBM().Bot.bot.user.id).catch(e => console.log(e))
+        dboats.postStats(this.getDBM().Bot.bot.guilds.size, this.getDBM().Bot.bot.user.id).catch(e => console.log(e));
 
         this.callNextAction(cache);
     },
