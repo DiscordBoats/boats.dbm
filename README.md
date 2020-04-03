@@ -1,4 +1,6 @@
 # boats.dbm
+> WE NO LONGER ACCEPT BOTS THAT WERE MADE WITH DISCORD BOT MAKER
+
 The official Discord Bot Maker mod for the Discord.Boats API
 
 
