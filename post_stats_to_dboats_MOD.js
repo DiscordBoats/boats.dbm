@@ -8,7 +8,7 @@ module.exports = {
         return `Posted stats to Discord.Boats!`;
     },
 
-    author: "MrSheldon",
+    author: "Roee Lupo",
 
     version: "1.0.1",
 
