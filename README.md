@@ -1,3 +1,6 @@
+# DEPRECATED
+The website this module is for has shutdown.
+
 # boats.dbm
 The official Discord Bot Maker mod for the Discord.Boats API
 
